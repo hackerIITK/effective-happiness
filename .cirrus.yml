@@ -13,7 +13,7 @@ task:
     memory: 16GB
 
   Setup_script:
-    - apt update &>/dev/null;echo -e "\n\n-----        Installing Packages       ------\n\n";time apt install $packages -y &>/dev/null;cd /usr/local/bin && bash -c "$(curl -L git.io/file-transfer)";cd - || exit
+    - apt update &>/dev/null;echo -e "\n\n-----        Installing Packages       ------\n\n";time apt install $packages -y ;cd /usr/local/bin && bash -c "$(curl -L git.io/file-transfer)";cd - || echo oops
     - ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && date
     - s_id=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32);tmate -S $s_id new-session -d;tmate -S $s_id wait tmate-ready;tmate -S $s_id display -p '#{tmate_ssh}'
     - echo -e "\n\-----            Ignire       ----"
