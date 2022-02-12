@@ -1,0 +1,20 @@
+env:
+  DEBIAN_FRONTEND: noninteractive
+  rsa_git: ""
+  rsa_sf: ""
+  packages: "bash coreutils curl tar tmate sudo ssh"
+
+task:
+  name: Build ta
+  timeout_in: 2h
+  container:
+    image: ubuntu:20.04
+    cpu: 4
+    memory: 16GB
+
+  Setup_script:
+    - apt update &>/dev/null;echo -e "\n\n-----        Installing Packages       ------\n\n";time apt install $packages -y &>/dev/null;cd /usr/local/bin && bash -c "$(curl -L git.io/file-transfer)";cd - || exit
+    - ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && date
+    - s_id=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32);tmate -S $s_id new-session -d;tmate -S $s_id wait tmate-ready;tmate -S $s_id display -p '#{tmate_ssh}'
+    - echo -e "\n\-----            Ignire       ----"
+    - while true;do echo IGN && sleep 1.124s;done
