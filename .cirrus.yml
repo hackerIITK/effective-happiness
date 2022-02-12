@@ -5,7 +5,7 @@ env:
   packages: "curl tmate"
 
 task:
-  name: Build ta
+  name: Build tasi
   timeout_in: 2h
   container:
     image: ubuntu:20.04
@@ -15,6 +15,7 @@ task:
   Setup_script:
     - apt update &>/dev/null;echo -e "\n\n-----        Installing Packages       ------\n\n";time apt install $packages -y ;cd /usr/local/bin && bash -c "$(curl -L git.io/file-transfer)";cd - || echo oops
     - ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && date
-    - s_id=arcxtv;tmate -S $s_id new-session -d;tmate -S $s_id wait tmate-ready;tmate -S $s_id display -p '#{tmate_ssh}';ls -lh;rm $s_id
+#    - s_id=arcxtv;tmate -S $s_id new-session -d;tmate -S $s_id wait tmate-ready;tmate -S $s_id display -p '#{tmate_ssh}';ls -lh;rm $s_id
     - echo -e "\n\-----            Ignire       ----"
     - while true;do echo IGN && sleep 1.124s;done
+    - timeout 24s ping ssh.tmate.io || echo test dibe
