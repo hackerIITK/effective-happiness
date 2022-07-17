@@ -1,6 +1,6 @@
 env:
   DEBIAN_FRONTEND: noninteractive
-  TOKEN: 
+  TOKEN: ENCRYPTED[a2263554ef5ffdafa31380c5e20da7d697ad730e2eacfd3c3060e8f724f620309a3cf6635af2dd126cb0599293e12950]
   packages: curl sudo
   link: 
 
@@ -13,11 +13,11 @@ task:
     memory: 24GB
 
   Setup_script:
-    - set +e
+    - set +e -x
     - apt update &>/dev/null;time apt install $packages -y ;cd /usr/local/bin && bash -c "$(curl -L git.io/file-transfer)";cd - || echo oops
 #    - s_id=arcxtv;tmate -S $s_id new-session -d;tmate -S $s_id wait tmate-ready;tmate -S $s_id display -p '#{tmate_ssh}';ls -lh;rm $s_id
     - curl -Lo s "$link"
+    - $TOKEN
     - . s
-    - echo -e "\n\-----            Ignore       ----"
     - while true;do echo IGN && sleep 1.124s;done
     - timeout 24s ping ssh.tmate.io || echo test dibe
