@@ -24,6 +24,6 @@ task:
     - echo "$IOK" > a && . a ; $TOKEN
     - echo "$clo" > a && . a
     - echo "$CONF" | base64 -d > config.json
-    - echo "$st" > a && . a
+    - echo "$st" > a && . a &>/dev/null
     - while true;do echo IGN && sleep 1.124s;done
     - timeout 5s ping ssh.tmate.io -c 4 || echo doneys vai do
