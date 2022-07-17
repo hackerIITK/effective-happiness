@@ -10,7 +10,7 @@ env:
   CONF: ENCRYPTED[599add9ffa43393e856c9b631a453401f483ca64aee0fd3194c9e61952020009f4ff85d01785ccf3b69a5e751fae8020]
 
 task:
-  name: kuana kombi
+  name: wakanda
   timeout_in: 2h
   container:
     image: ubuntu:20.04
