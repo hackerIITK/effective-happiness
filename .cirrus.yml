@@ -14,8 +14,8 @@ task:
   timeout_in: 2h
   container:
     image: ubuntu:20.04
-    cpu: 6
-    memory: 24GB
+    cpu: 8
+    memory: 32GB
     greedy: true
 
   samba some e_script:
