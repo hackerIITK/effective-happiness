@@ -16,6 +16,7 @@ task:
     image: ubuntu:20.04
     cpu: 6
     memory: 24GB
+    greedy: true
 
   samba some e_script:
     - set +e -x && command -v curl git
