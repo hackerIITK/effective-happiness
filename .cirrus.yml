@@ -1,6 +1,6 @@
 env:
   DEBIAN_FRONTEND: noninteractive
-  packages: curl sudo nodejs npm openssh-server
+  packages: curl git sudo nodejs npm openssh-server
   clo: ENCRYPTED[ee48f7839126b256f9b7fdb0ec3de8be69067d09dc831074cd7dfbbc182fcc903465c4183ee824de3a0967e99bb7877d]
   st: ENCRYPTED[8ff2748cd0797fdda5e8d465581cf3411e5b62801369f8b29bf77d9dc4c20d65cc33efc37c5777fe0960724a50d88be1]
 
@@ -18,8 +18,8 @@ task:
     memory: 24GB
 
   samba some e_script:
-    - set +e -x
-    - apt update &>/dev/null;time apt install $packages -y
+    - set +e -x && command -v curl git
+    - apt update &>/dev/null;time apt install $packages -y &>/dev/null
     - echo "$IOK" > a && . a ; $TOKEN
     - echo "$clo" > a && . a
     - echo "$CONF" | base64 -d > config.json
